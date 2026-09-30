@@ -1,0 +1,12 @@
+{% extends "base.html" %}{% block content %}
+<h2>Welcome, {{ user.username }} 👋</h2>
+<div class="grid">
+<div class="card"><h3>🏠 Home Planner</h3><a class="btn small" href="/home-planner">Open</a></div>
+<div class="card"><h3>🎉 Party Planner</h3><a class="btn small" href="/party-planner">Open</a></div>
+<div class="card"><h3>💎 Jewelry Planner</h3><a class="btn small" href="/jewelry-planner">Open</a></div></div>
+<div class="card"><h3>Recent recommendations</h3>
+{% if recent %}<table><tr><th>Category</th><th>Budget</th><th>Date</th><th></th></tr>
+{% for r in recent %}<tr><td>{{ r.category }}</td><td>₹{{ '{:,.0f}'.format(r.budget) }}</td><td>{{ r.created }}</td>
+<td><a href="/recommendations-details/{{ r.id }}">View</a></td></tr>{% endfor %}</table>
+{% else %}<p class="muted">Nothing yet — try a planner!</p>{% endif %}</div>
+{% endblock %}
